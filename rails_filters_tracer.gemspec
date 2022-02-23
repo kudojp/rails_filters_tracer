@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.authors = ["kudojp"]
   spec.email = ["heyjudejudejude1968@gmail.com"]
 
-  spec.summary = "A perfomance monitoring tool of filters of a specific Rails controller action"
-  spec.description = "This gem is used to measure the execution times of each of filters of a specific Rails controller action. This is a supplmentary tool of newrelic-ruby-agent gem."
+  spec.summary = "A performance monitoring tool to find the bottleneck in filters of a Rails controller action"
+  spec.description = "With this gem, you can measure the execution times of each of filters registered to a Rails controller action. This is a supplementary tool of newrelic-ruby-agent gem."
   spec.homepage = "https://github.com/kudojp/rails_filters_tracer"
   spec.license = "MIT"
   spec.required_ruby_version = ">= 2.6.0"
