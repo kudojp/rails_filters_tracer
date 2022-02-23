@@ -8,9 +8,9 @@ Gem::Specification.new do |spec|
   spec.authors = ["kudojp"]
   spec.email = ["heyjudejudejude1968@gmail.com"]
 
-  spec.summary = "TODO: Write a short summary, because RubyGems requires one."
-  spec.description = "TODO: Write a longer description or delete this line."
-  spec.homepage = "TODO: Put your gem's website or public repo URL here."
+  spec.summary = "A perfomance monitoring tool of filters of a specific Rails controller action"
+  spec.description = "This gem is used to measure the execution times of each of filters of a specific Rails controller action. This is a supplmentary tool of newrelic-ruby-agent gem."
+  spec.homepage = "https://github.com/kudojp/rails_filters_tracer"
   spec.license = "MIT"
   spec.required_ruby_version = ">= 2.6.0"
 
