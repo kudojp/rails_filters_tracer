@@ -34,7 +34,7 @@ module FiltersTracer
         configuration.logger
       end
 
-      def add_controller(controller)
+      def register_controller(controller)
         controller =
           case controller
           when Class
@@ -73,7 +73,7 @@ module FiltersTracer
         Rails.logger.info "===== [Success] Filters of all actions in #{controller_klass} will be reported to the New Relic server ====="
       end
 
-      def add_all_controllers()
+      def register_all_controllers()
         # TODO
       end
     end
