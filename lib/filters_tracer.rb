@@ -9,7 +9,7 @@ module FiltersTracer
     attr_accessor :logger
 
     def initialize
-      self.logger = defined?(Rails) ? Rails.logger : Logger.new(STDOUT)
+      self.logger = defined?(::Rails) ? Rails.logger : Logger.new(STDOUT)
     end
 
     class << self
