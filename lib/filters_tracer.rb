@@ -35,19 +35,7 @@ module FiltersTracer
       end
 
       def register_controller(controller)
-        controller =
-          case controller
-          when Class
-          when String, Symbol
-            begin
-              controller_klass = controller_str.constantize
-            rescue NameError
-              logger.error "===== [Failure] Controller: '#{controller_str}' has not been found ====="
-              next
-            end
-          else
-            logger.error "===== [Failure] Could not identify a controller from #{controller}(#{controller.class}) ====="
-          end
+        controller_klass = self.controller_class_from(controller) || return
 
         unless controller_klass.method_defined?(:_process_action_callbacks)
           Rails.logger.error "===== [Failure] #{controller_klass} is not a traceable controller ====="
@@ -74,23 +62,30 @@ module FiltersTracer
       end
 
       def register_all_subcontrollers(controller)
-        controller =
-          case controller
-          when Class
-          when String, Symbol
-            begin
-              controller_klass = controller_str.constantize
-            rescue NameError
-              logger.error "===== [Failure] Controller: '#{controller_str}' has not been found ====="
-              next
-            end
-          else
-            logger.error "===== [Failure] Could not identify a controller from #{controller}(#{controller.class}) ====="
-          end
+        controller_klass = self.controller_class_from(controller) || return
 
-        controller.descendants.each do |controller|
+        controller_klass.descendants.each do |controller|
           self.register_controller(controller)
         end
+      end
+
+      private
+
+      def controller_class_from(controller)
+        case controller
+        when Class
+          return controller
+        when String, Symbol
+          begin
+            return controller.constantize
+          rescue NameError
+            logger.error "===== [Failure] Controller: '#{controller}' has not been found ====="
+          end
+        else
+          logger.error "===== [Failure] Could not identify a controller from #{controller}(#{controller.class}) ====="
+        end
+
+        nil
       end
     end
   end
