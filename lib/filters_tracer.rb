@@ -38,8 +38,8 @@ module FiltersTracer
         controller_klass = self.controller_class_from(controller) || return
 
         unless controller_klass.method_defined?(:_process_action_callbacks)
-          Rails.logger.error "===== [Failure] #{controller_klass} is not a traceable controller ====="
-          Rails.logger.error "===== This is probably because either #{controller_klass} is not a Rails controller or because the current version of Rails is not compatible with 'rails_filters_tracer' gem."
+          logger.error "===== [Failure] #{controller_klass} is not a traceable controller ====="
+          logger.error "===== This is probably because either #{controller_klass} is not a Rails controller or because the current version of Rails is not compatible with 'rails_filters_tracer' gem."
           next
         end
 
@@ -54,11 +54,11 @@ module FiltersTracer
             end
           rescue
             logger.error "===== [Failure] Filters of actions in #{controller_str} would not be traced properly.  ====="
-            Rails.logger.error "===== This is probably because either the current version of Rails or NewRelic::Agent is not compatible with 'rails_filters_tracer' gem."
+            logger.error "===== This is probably because either the current version of Rails or NewRelic::Agent is not compatible with 'rails_filters_tracer' gem."
           end
         end
 
-        Rails.logger.info "===== [Success] Filters of all actions in #{controller_klass} will be reported to the New Relic server ====="
+        logger.info "===== [Success] Filters of all actions in #{controller_klass} will be reported to the New Relic server ====="
       end
 
       def register_all_subcontrollers(controller)
