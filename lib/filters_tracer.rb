@@ -73,8 +73,24 @@ module FiltersTracer
         Rails.logger.info "===== [Success] Filters of all actions in #{controller_klass} will be reported to the New Relic server ====="
       end
 
-      def register_all_controllers()
-        # TODO
+      def register_all_subcontrollers(controller)
+        controller =
+          case controller
+          when Class
+          when String, Symbol
+            begin
+              controller_klass = controller_str.constantize
+            rescue NameError
+              logger.error "===== [Failure] Controller: '#{controller_str}' has not been found ====="
+              next
+            end
+          else
+            logger.error "===== [Failure] Could not identify a controller from #{controller}(#{controller.class}) ====="
+          end
+
+        controller.descendants.each do |controller|
+          self.register_controller(controller)
+        end
       end
     end
   end
