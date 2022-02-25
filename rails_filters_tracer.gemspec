@@ -1,10 +1,11 @@
 # frozen_string_literal: true
 
-require_relative "lib/rails_filters_tracer/version"
+require_relative "lib/filters_tracer/version"
 
 Gem::Specification.new do |spec|
+
   spec.name = "rails_filters_tracer"
-  spec.version = RailsFiltersTracer::VERSION
+  spec.version = FiltersTracer::VERSION
   spec.authors = ["kudojp"]
   spec.email = ["heyjudejudejude1968@gmail.com"]
 

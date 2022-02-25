@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'newrelic_rpm'
-require_relative "rails_filters_tracer/version"
+require_relative "filters_tracer/version"
 
 module FiltersTracer
   class Configuration
