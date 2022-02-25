@@ -42,7 +42,7 @@ module FiltersTracer
       unless controller_klass.method_defined?(:_process_action_callbacks)
         logger.error "===== [Failure] #{controller_klass} is not a traceable controller ====="
         logger.error "===== This is probably because either #{controller_klass} is not a Rails controller or because the current version of Rails is not compatible with 'rails_filters_tracer' gem."
-        next
+        return
       end
 
       controller_klass.class_eval do
