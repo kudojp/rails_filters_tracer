@@ -32,6 +32,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   # Uncomment to register a new dependency of your gem
+  spec.add_dependency "rails", "6.0.3"
   spec.add_dependency "newrelic_rpm", "~> 6.12"
 
   # For more information and examples about making a new gem, check out our
