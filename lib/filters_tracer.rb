@@ -45,19 +45,20 @@ module FiltersTracer
         return
       end
 
-      controller_klass.class_eval do
-        self.include ::NewRelic::Agent::MethodTracer
-        begin
+      begin
+        controller_klass.class_eval do
+          self.include ::NewRelic::Agent::MethodTracer
           self._process_action_callbacks().send(:chain).each do |callback|
             case callback.raw_filter
             when Symbol
               self.add_method_tracer callback.raw_filter
             end
           end
-        rescue
-          logger.error "===== [Failure] Filters of actions in #{controller_str} would not be traced properly.  ====="
-          logger.error "===== This is probably because either the current version of Rails or NewRelic::Agent is not compatible with 'rails_filters_tracer' gem."
         end
+      rescue
+        logger.error "===== [Failure] Filters of actions in #{controller_str} would not be traced properly.  ====="
+        logger.error "===== This is probably because either the current version of Rails or NewRelic::Agent is not compatible with 'rails_filters_tracer' gem."
+        return
       end
 
       logger.info "===== [Success] Filters of all actions in #{controller_klass} will be reported to the New Relic server ====="
