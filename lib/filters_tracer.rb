@@ -65,8 +65,9 @@ module FiltersTracer
     end
 
     def register_all_subcontrollers(controller)
-      controller_klass = self.controller_class_from(controller) || return
+      controller_klass = self.class_from(controller) || return
 
+      self.register_controller(controller_klass)
       controller_klass.descendants.each do |controller|
         self.register_controller(controller)
       end
