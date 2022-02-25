@@ -37,7 +37,7 @@ module FiltersTracer
     end
 
     def register_controller(controller)
-      controller_klass = self.controller_class_from(controller) || return
+      controller_klass = self.class_from(controller) || return
 
       unless controller_klass.method_defined?(:_process_action_callbacks)
         logger.error "===== [Failure] #{controller_klass} is not a traceable controller ====="
@@ -73,18 +73,18 @@ module FiltersTracer
 
     private
 
-    def controller_class_from(controller)
-      case controller
+    def class_from(identifier)
+      case identifier
       when Class
-        return controller
+        return identifier
       when String, Symbol
         begin
-          return controller.constantize
+          return identifier.constantize
         rescue NameError
-          logger.error "===== [Failure] Controller: '#{controller}' has not been found ====="
+          logger.error "===== [Failure] Class: '#{identifier}' has not been found ====="
         end
       else
-        logger.error "===== [Failure] Could not identify a controller from #{controller}(#{controller.class}) ====="
+        logger.error "===== [Failure] Could not identify a class from #{controller}(#{controller.class}) ====="
       end
 
       nil
