@@ -84,7 +84,7 @@ module FiltersTracer
           logger.error "===== [Failure] Class: '#{identifier}' has not been found ====="
         end
       else
-        logger.error "===== [Failure] Could not identify a class from #{controller}(#{controller.class}) ====="
+        logger.error "===== [Failure] Could not identify a class from #{identifier}(#{identifier.class}) ====="
       end
 
       nil
