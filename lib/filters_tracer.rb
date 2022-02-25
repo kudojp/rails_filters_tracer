@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'newrelic_rpm'
 require_relative "rails_filters_tracer/version"
 
 module FiltersTracer
