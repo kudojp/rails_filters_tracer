@@ -79,7 +79,7 @@ module FiltersTracer
         return identifier
       when String, Symbol
         begin
-          return identifier.constantize
+          return identifier.to_s.constantize
         rescue NameError
           logger.error "===== [Failure] Class: '#{identifier}' has not been found ====="
         end
