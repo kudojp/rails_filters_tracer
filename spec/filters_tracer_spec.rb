@@ -2,6 +2,7 @@
 require "pry-byebug"
 require "rails"
 require "support/child_controller.rb"
+require "support/grand_child_controller.rb"
 
 RSpec.describe FiltersTracer do
   it "has a version number" do
@@ -41,6 +42,19 @@ RSpec.describe FiltersTracer do
         expect(logger).to receive(:info).with("===== [Success] Filters of all actions in ParentController will be reported to the New Relic server =====")
 
         FiltersTracer.register_controller(ParentController)
+      end
+    end
+  end
+
+  describe ".register_all_controllers" do
+    context "when ParentController is registered" do
+      it "registers all of ParentController, ChildController, GrandChildController, and logs the success of the registrations" do
+        expect(FiltersTracer).to receive(:class_from).with(ParentController).and_return(ParentController)
+        expect(FiltersTracer).to receive(:register_controller).with(ParentController).once
+        expect(FiltersTracer).to receive(:register_controller).with(ChildController).once
+        expect(FiltersTracer).to receive(:register_controller).with(GrandChildController).once
+
+        FiltersTracer.register_all_subcontrollers(ParentController)
       end
     end
   end

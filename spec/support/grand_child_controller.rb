@@ -1,0 +1,1 @@
+class GrandChildController < ChildController; end
