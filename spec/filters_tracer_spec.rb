@@ -1,8 +1,7 @@
 # frozen_string_literal: true
+
 require "pry-byebug"
 require "rails"
-require "support/child_controller.rb"
-require "support/grand_child_controller.rb"
 
 RSpec.describe FiltersTracer do
   it "has a version number" do

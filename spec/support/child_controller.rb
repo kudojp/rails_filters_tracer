@@ -1,4 +1,3 @@
-require "action_controller"
 require "support/parent_controller"
 
 class ChildController < ParentController

@@ -1,3 +1,5 @@
+require "action_controller"
+
 class ParentController < ActionController::Base
   before_action :before_action_method__parent
   after_action :after_action_method__parent
