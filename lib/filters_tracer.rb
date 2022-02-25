@@ -16,10 +16,10 @@ module FiltersTracer
 
   class << self
     # @example
-    #   FiltersTracer.configure do |c|
-    #     self.logger = MyCustomLogger.new
+    #   FiltersTracer.configure do |config|
+    #     config.logger = MyCustomLogger.new
     #   end
-    # @yield [c]
+    # @yield [config]
     # @yieldparam [FiltersTracer::Configuration] config
     # @return [void]
     def configure
