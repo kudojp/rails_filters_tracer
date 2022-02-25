@@ -1,10 +1,48 @@
 # frozen_string_literal: true
 require "pry-byebug"
 require "rails"
+require "support/child_controller.rb"
 
 RSpec.describe FiltersTracer do
   it "has a version number" do
     expect(FiltersTracer::VERSION).not_to be nil
+  end
+
+  describe ".register_controller" do
+    let(:logger){ Logger.new(STDOUT) }
+    before do
+      FiltersTracer.configure do |config|
+        config.logger = logger
+      end
+    end
+
+    context "when ChildController is registered" do
+      it "registers controller, and logs the success of the registration" do
+        expect(ChildController).to receive(:add_method_tracer).with(:before_action_method__child).once
+        expect(ChildController).to receive(:add_method_tracer).with(:after_action_method__child).once
+        expect(ChildController).to receive(:add_method_tracer).with(:before_action_method__parent).once
+        expect(ChildController).to receive(:add_method_tracer).with(:after_action_method__parent).once
+        expect(ParentController).not_to receive(:add_method_tracer)
+
+        expect(logger).to receive(:info).with("===== [Success] Filters of all actions in ChildController will be reported to the New Relic server =====")
+
+        FiltersTracer.register_controller(ChildController)
+      end
+    end
+
+    context "when ParentController is registered" do
+      it "registers controller, and logs the success of the registration" do
+        expect(ChildController).not_to receive(:add_method_tracer)
+        expect(ParentController).not_to receive(:add_method_tracer).with(:before_action_method__child)
+        expect(ParentController).not_to receive(:add_method_tracer).with(:after_action_method__child)
+        expect(ParentController).to receive(:add_method_tracer).with(:before_action_method__parent).once
+        expect(ParentController).to receive(:add_method_tracer).with(:after_action_method__parent).once
+
+        expect(logger).to receive(:info).with("===== [Success] Filters of all actions in ParentController will be reported to the New Relic server =====")
+
+        FiltersTracer.register_controller(ParentController)
+      end
+    end
   end
 
   describe ".class_from" do
