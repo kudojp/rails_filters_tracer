@@ -5,7 +5,7 @@
 [![Gem Version](https://badge.fury.io/rb/rails_filters_tracer.svg)](https://badge.fury.io/rb/rails_filters_tracer)
 [![License](https://img.shields.io/github/license/kudojp/rails_filters_tracer)](./LICENSE)
 
-RailsFiltersTracer helps you find performance bottlenecks in [filters](https://guides.rubyonrails.org/action_controller_overview.html#filters) of Rails Controllers. This gem works harmoniously with [newrelic_rpm](https://rubygems.org/gems/newrelic_rpm) gem.
+RailsFiltersTracer helps you find performance bottlenecks in [filters](https://guides.rubyonrails.org/action_controller_overview.html#filters) of Rails Controllers. It works harmoniously with [newrelic_rpm](https://rubygems.org/gems/newrelic_rpm) gem.
 
 ## Usage
 
@@ -30,7 +30,7 @@ class UsersController < ApplicationController
 end
 ```
 
-This gem eliminates this hassle. Just register `UsersController` to `FiltersTracer`'s configuration, and that's it. All the performance of all the filters are reported to New Relic server. 🎉🎉🎉
+RailsFiltersTracer eliminates this hassle. Just register `UsersController` to `FiltersTracer`'s configuration, and that's it. All the performance of all the filters are reported to New Relic server. 🎉🎉🎉
 
 ```rb
 FiltersTracer.configure do |config|
