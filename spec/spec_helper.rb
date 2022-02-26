@@ -1,10 +1,6 @@
 # frozen_string_literal: true
 
-require "rails_filters_tracer"
 require "simplecov"
-
-Dir[File.expand_path("./support/**/*.rb", __dir__)].each { |f| require f }
-
 SimpleCov.start do
   add_filter '/spec/'
 end
@@ -13,6 +9,9 @@ if ENV['CI']
   require "simplecov-cobertura"
   SimpleCov.formatter = SimpleCov::Formatter::CoberturaFormatter
 end
+
+require "rails_filters_tracer"
+Dir[File.expand_path("./support/**/*.rb", __dir__)].each { |f| require f }
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
