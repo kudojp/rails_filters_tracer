@@ -9,6 +9,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - run: sudo gem install bundler -v 2.3.7
+      - uses: actions/checkout@v2
       - run: bundle install
       - run: bundle exec rspec
       - uses: codecov/codecov-action@v1
