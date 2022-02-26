@@ -16,6 +16,23 @@ RSpec.describe FiltersTracer do
       end
     end
 
+    context "when ParentController is registered" do
+      it "registers all filters in all actions in the controller, and logs the success of the registration" do
+        # filters of ChildController#some_action_child, ChildController#some_action2_child
+        expect(ChildController).not_to receive(:add_method_tracer)
+
+        # filters of ParentController#some_action_parent
+        expect(ParentController).not_to receive(:add_method_tracer).with(:before_action_method__child)
+        expect(ParentController).not_to receive(:add_method_tracer).with(:after_action_method__child)
+        expect(ParentController).to receive(:add_method_tracer).with(:before_action_method__parent).once
+        expect(ParentController).to receive(:add_method_tracer).with(:after_action_method__parent).once
+
+        expect(logger).to receive(:info).with("===== [Success] Filters of all actions in ParentController will be reported to the New Relic server =====")
+
+        FiltersTracer.register_controller(ParentController)
+      end
+    end
+
     context "when ChildController is registered" do
       it "registers all filters in all actions in the controller, and logs the success of the registration" do
         # filters of ChildController#some_action_child
@@ -33,23 +50,6 @@ RSpec.describe FiltersTracer do
         expect(logger).to receive(:info).with("===== [Success] Filters of all actions in ChildController will be reported to the New Relic server =====")
 
         FiltersTracer.register_controller(ChildController)
-      end
-    end
-
-    context "when ParentController is registered" do
-      it "registers all filters in all actions in the controller, and logs the success of the registration" do
-        # filters of ChildController#some_action_child, ChildController#some_action2_child
-        expect(ChildController).not_to receive(:add_method_tracer)
-
-        # filters of ParentController#some_action_parent
-        expect(ParentController).not_to receive(:add_method_tracer).with(:before_action_method__child)
-        expect(ParentController).not_to receive(:add_method_tracer).with(:after_action_method__child)
-        expect(ParentController).to receive(:add_method_tracer).with(:before_action_method__parent).once
-        expect(ParentController).to receive(:add_method_tracer).with(:after_action_method__parent).once
-
-        expect(logger).to receive(:info).with("===== [Success] Filters of all actions in ParentController will be reported to the New Relic server =====")
-
-        FiltersTracer.register_controller(ParentController)
       end
     end
   end
