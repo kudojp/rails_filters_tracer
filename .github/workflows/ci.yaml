@@ -8,7 +8,7 @@ jobs:
         os: [ubuntu-latest, macos-latest, windows-latest]
     runs-on: ${{ matrix.os }}
     steps:
-      - run: gem install bundler -v 2.3.7
+      - run: sudo gem install bundler -v 2.3.7
       - run: bundle install
       - run: bundle exec rspec
       - uses: codecov/codecov-action@v1
