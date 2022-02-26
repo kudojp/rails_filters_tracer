@@ -13,7 +13,7 @@ Imagine you are working on performance tuning of Rails application, and find tha
 
 Your next step would probably be breaking down the execution time by an action itself and filters registered to the action.
 
-With `newrelic_rpm` gem, you could trace each of them by calling `add_method_tracer` iteratively as below. This is bothersome (especially when the controller inherits another controller, in which case you also have to take care of inherited filters). 😢😢😢
+With `newrelic_rpm` gem, you can trace each of them by calling `add_method_tracer` iteratively as below. This is bothersome (especially when the controller inherits another controller, in which case you also have to take care of inherited filters). 😢😢😢
 
 ```rb
 class UsersController < ApplicationController
@@ -30,7 +30,7 @@ class UsersController < ApplicationController
 end
 ```
 
-RailsFiltersTracer eliminates this hassle. Just register `UsersController` to `FiltersTracer`'s configuration, and that's it. All the performance of all the filters are reported to New Relic server. 🎉🎉🎉
+RailsFiltersTracer eliminates this hassle. Just register `UsersController` to `FiltersTracer`'s configuration, and that's it. Performances of all the filters are reported to New Relic server. 🎉🎉🎉
 
 ```rb
 FiltersTracer.configure do |config|
@@ -70,7 +70,7 @@ Rails.application.config.after_initialize do
 
     # Specify a controller whose self and subclasses should be monitored.
     # Registering duplicated controllers with the previous step are allowed.
-    # [Tip] Specifying ApplicationController would typically monitor all the filters in your app.
+    # [Tip] Registering ApplicationController would typically enables to monitor all the filters in Rails app.
     config.register_all_subcontrollers ApplicationController
   end
 end
