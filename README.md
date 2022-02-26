@@ -77,7 +77,7 @@ end
 
 ## Dependencies
 
-This gem depends on `rails (6.0.3)` and `newrelic_rpm (~> 6.12)`.
+This gem depends on `rails (>= 6.0.3, <7)` and `newrelic_rpm (>= 6.12, < 9)`.
 (This does not mean previous or later versions does not work with. Compatibilities have not been investigated.)
 
 For `rails`, the compatibility has to be investigated in a strict manner. This is because FilterTracer monkey patches ActionController objects internally, thus even the difference of minor version of rails may result in the crush.
