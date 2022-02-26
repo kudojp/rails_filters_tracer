@@ -96,7 +96,6 @@ RSpec.describe FiltersTracer do
 
     context "when ParentController is registered" do
       it "registers all of ParentController, ChildController, GrandChildController, and logs the success of the registrations" do
-        # expect(FiltersTracer).to receive(:class_from).with(ParentController).and_return(ParentController)
         expect(FiltersTracer).to receive(:register_controller).with(ParentController).once
         expect(FiltersTracer).to receive(:register_controller).with(ChildController).once
         expect(FiltersTracer).to receive(:register_controller).with(GrandChildController).once
