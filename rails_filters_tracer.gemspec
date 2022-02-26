@@ -32,7 +32,7 @@ Gem::Specification.new do |spec|
   spec.executables = spec.files.grep(%r{\Aexe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
-  spec.add_dependency "rails", "6.0.3"
+  spec.add_dependency "rails", "6.0.3", "<7"
   spec.add_dependency "newrelic_rpm", ">= 6.12", "<9"
 
   spec.add_development_dependency "pry-byebug"
