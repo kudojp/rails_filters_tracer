@@ -16,8 +16,8 @@ RSpec.describe FiltersTracer do
       end
     end
 
-    context "when ParentController is registered" do
-      it "registers all filters in all actions in the controller, and logs the success of the registration" do
+    context "when a controller with multiple actions is registered" do
+      it "traces all filters in all actions in the controller, and logs the success of the registration" do
         # filters of ChildController#some_action_child, ChildController#some_action2_child
         expect(ChildController).not_to receive(:add_method_tracer)
 
@@ -33,8 +33,8 @@ RSpec.describe FiltersTracer do
       end
     end
 
-    context "when ChildController is registered" do
-      it "registers all filters in all actions in the controller, and logs the success of the registration" do
+    context "when a controller, some of whose filters are defined in a parent controller class, is registered" do
+      it "traces all filters of the controller, and logs the success of the registration" do
         # filters of ChildController#some_action_child
         expect(ChildController).to receive(:add_method_tracer).with(:before_action_method__child).once
         expect(ChildController).to receive(:add_method_tracer).with(:after_action_method__child).once
