@@ -36,6 +36,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "newrelic_rpm", "~> 6.12"
 
   spec.add_development_dependency "pry-byebug"
+  spec.add_development_dependency "simplecov-cobertura"
 
   # For more information and examples about making a new gem, check out our
   # guide at: https://bundler.io/guides/creating_gem.html
