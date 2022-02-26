@@ -1,11 +1,12 @@
 # frozen_string_literal: true
 
-require "simplecov"
-SimpleCov.start do
-  add_filter '/spec/'
-end
 
 if ENV['CI']
+  require "simplecov"
+  SimpleCov.start do
+    add_filter '/spec/'
+  end
+
   require "simplecov-cobertura"
   SimpleCov.formatter = SimpleCov::Formatter::CoberturaFormatter
 end
