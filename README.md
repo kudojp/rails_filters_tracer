@@ -1,7 +1,7 @@
 # RailsFiltersTracer
 
-[![CI](https://github.com/kudojp/rails_filters_tracer/workflows/CI/badge.svg?branch=master)](https://github.com/kudojp/rails_filters_tracer/actions?query=workflow%3ACI+branch%3Amaster)
-[![codecov](https://codecov.io/gh/kudojp/rails_filters_tracer/branch/master/graph/badge.svg)](https://codecov.io/gh/kudojp/rails_filters_tracer)<!-- TODO: add a badge of [![Gem Version] -->
+[![CI](https://github.com/kudojp/rails_filters_tracer/workflows/CI/badge.svg?branch=main)](https://github.com/kudojp/rails_filters_tracer/actions?query=workflow%3ACI+branch%3Amain)
+[![codecov](https://codecov.io/gh/kudojp/rails_filters_tracer/branch/main/graph/badge.svg?token=KSQO6HIAUH)](https://codecov.io/gh/kudojp/rails_filters_tracer)<!-- TODO: add a badge of [![Gem Version] -->
 [![License](https://img.shields.io/github/license/kudojp/rails_filters_tracer)](./LICENSE)
 
 Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/rails_filters_tracer`. To experiment with that code, run `bin/console` for an interactive prompt.
