@@ -1,7 +1,8 @@
 # RailsFiltersTracer
 
 [![CI](https://github.com/kudojp/rails_filters_tracer/workflows/CI/badge.svg?branch=main)](https://github.com/kudojp/rails_filters_tracer/actions?query=workflow%3ACI+branch%3Amain)
-[![codecov](https://codecov.io/gh/kudojp/rails_filters_tracer/branch/main/graph/badge.svg?token=KSQO6HIAUH)](https://codecov.io/gh/kudojp/rails_filters_tracer)<!-- TODO: add a badge of [![Gem Version] -->
+[![codecov](https://codecov.io/gh/kudojp/rails_filters_tracer/branch/main/graph/badge.svg?token=KSQO6HIAUH)](https://codecov.io/gh/kudojp/rails_filters_tracer)
+[![Gem Version](https://badge.fury.io/rb/rails_filters_tracer.svg)](https://badge.fury.io/rb/rails_filters_tracer)
 [![License](https://img.shields.io/github/license/kudojp/rails_filters_tracer)](./LICENSE)
 
 RailsFiltersTracer helps you find performance bottlenecks in [filters](https://guides.rubyonrails.org/action_controller_overview.html#filters) of Rails Controllers. This gem works harmoniously with [newrelic_rpm](https://rubygems.org/gems/newrelic_rpm) gem.
