@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'newrelic_rpm'
+require 'active_support/all'
 require_relative "filters_tracer/version"
 
 module FiltersTracer
@@ -37,16 +38,19 @@ module FiltersTracer
     end
 
     def register_controller(controller)
-      controller_klass = self.class_from(controller) || return
+      if controller.class != Class
+        logger.error "===== [Failure] Could not register #{controller}(#{controller.class}) ====="
+        return
+      end
 
-      unless controller_klass.method_defined?(:_process_action_callbacks)
-        logger.error "===== [Failure] #{controller_klass} is not a traceable controller ====="
-        logger.error "===== This is probably because either #{controller_klass} is not a Rails controller or because the current version of Rails is not compatible with 'rails_filters_tracer' gem."
+      unless controller.method_defined?(:_process_action_callbacks)
+        logger.error "===== [Failure] #{controller} is not a traceable controller ====="
+        logger.error "===== This is probably because either #{controller} is not a Rails controller or because the current version of Rails is not compatible with 'rails_filters_tracer' gem."
         return
       end
 
       begin
-        controller_klass.class_eval do
+        controller.class_eval do
           self.include ::NewRelic::Agent::MethodTracer
           self._process_action_callbacks().send(:chain).each do |callback|
             case callback.raw_filter
@@ -61,35 +65,19 @@ module FiltersTracer
         return
       end
 
-      logger.info "===== [Success] Filters of all actions in #{controller_klass} will be reported to the New Relic server ====="
+      logger.info "===== [Success] Filters of all actions in #{controller} will be reported to the New Relic server ====="
     end
 
     def register_all_subcontrollers(controller)
-      controller_klass = self.class_from(controller) || return
-
-      self.register_controller(controller_klass)
-      controller_klass.descendants.each do |controller|
-        self.register_controller(controller)
-      end
-    end
-
-    private
-
-    def class_from(identifier)
-      case identifier
-      when Class
-        return identifier
-      when String, Symbol
-        begin
-          return identifier.to_s.constantize
-        rescue NameError
-          logger.error "===== [Failure] Class: '#{identifier}' has not been found ====="
-        end
-      else
-        logger.error "===== [Failure] Could not identify a class from #{identifier}(#{identifier.class}) ====="
+      if controller.class != Class
+        logger.error "===== [Failure] Could not register #{controller}(#{controller.class}) ====="
+        return
       end
 
-      nil
+      self.register_controller(controller)
+      controller.descendants.each do |sub_controller|
+        self.register_controller(sub_controller)
+      end
     end
   end
 end
