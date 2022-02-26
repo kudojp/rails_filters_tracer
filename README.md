@@ -37,6 +37,8 @@ FiltersTracer.configure do |config|
 end
 ```
 
+⚠️ Currently, filters which are defined not as function but as block are not be traced. This feature would be added in the future version.
+
 ## How to install and configure
 
 Add this line to your application's Gemfile:
