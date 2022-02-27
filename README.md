@@ -30,7 +30,7 @@ class UsersController < ApplicationController
 end
 ```
 
-RailsFiltersTracer eliminates this hassle. Just register `UsersController` to `FiltersTracer`'s configuration, and that's it. Performances of all the filters are reported to New Relic server. 🎉🎉🎉
+RailsFiltersTracer eliminates this hassle. Just register `UsersController` to `FiltersTracer`'s configuration, and that's it. Performances of all the filters will be reported to the New Relic server. 🎉🎉🎉
 
 ```rb
 FiltersTracer.configure do |config|
