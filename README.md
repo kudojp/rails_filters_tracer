@@ -69,7 +69,7 @@ Rails.application.config.after_initialize do
     config.register_controller PostsController
 
     # Specify a controller whose self and subclasses should be monitored.
-    # Registering duplicated controllers with the previous step are allowed.
+    # Registering duplicated controllers with the previous step is allowed.
     # [Tip] Registering ApplicationController would typically enables to monitor all the filters in Rails app.
     config.register_all_subcontrollers ApplicationController
   end
