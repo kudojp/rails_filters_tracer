@@ -38,6 +38,8 @@ FiltersTracer.configure do |config|
 end
 ```
 
+You can find it in the New Relic dashboard.
+
 <img width="1098" alt="image" src="https://user-images.githubusercontent.com/44487754/158318937-cedeb49c-0351-4ebe-bc59-6565c3b17857.png">
 
 
