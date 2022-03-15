@@ -40,7 +40,14 @@ end
 
 You can find it in the New Relic dashboard.
 
+<details>
+<summary>dashboard screenshot</summary>
+
+
+This is not the one in the example above.
 <img width="1098" alt="image" src="https://user-images.githubusercontent.com/44487754/158318937-cedeb49c-0351-4ebe-bc59-6565c3b17857.png">
+
+</details>
 
 
 ⚠️ Currently, filters which are defined as blocks (not functions) would not be traced. This feature would be added in the future version.
