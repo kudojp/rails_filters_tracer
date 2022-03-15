@@ -38,6 +38,9 @@ FiltersTracer.configure do |config|
 end
 ```
 
+<img width="1098" alt="image" src="https://user-images.githubusercontent.com/44487754/158318937-cedeb49c-0351-4ebe-bc59-6565c3b17857.png">
+
+
 ⚠️ Currently, filters which are defined as blocks (not functions) would not be traced. This feature would be added in the future version.
 
 ## How to install and configure
